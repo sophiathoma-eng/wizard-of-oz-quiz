@@ -4,6 +4,7 @@ import sys
 import threading
 from playsound3 import playsound
 
+
 # -----------------------------
 # ANSI ESCAPE CODES
 # -----------------------------
@@ -16,13 +17,6 @@ CYAN = "\033[96m"
 RESET = "\033[0m"
 MOVE_CURSOR_UP = "\033[A"
 CLEAR_CURRENT_LINE = "\x1b[2K"
-
-# -----------------------------
-# SIMPLE BEEP
-# (only works on unix systems)
-# -----------------------------
-
-UNIX_BEEP = 'printf "\a"'
 
 
 def beep_correct():
@@ -71,7 +65,7 @@ def title_screen():
     print(MAGENTA + "==============================")
     print("     WIZARD OF OZ QUIZ GAME 🌈")
     print("==============================" + RESET)
-    print(CYAN + "3 Levels • Timed Questions • Highscore" + RESET)
+    print(CYAN + "4 Levels • Timed Questions • Highscore" + RESET)
     print(YELLOW + f"Current Highscore: {load_highscore()} ⭐" + RESET)
     input(GREEN + "\nPress ENTER to begin..." + RESET)
 
