@@ -23,12 +23,14 @@ CLEAR_CURRENT_LINE = "\x1b[2K"
 
 UNIX_BEEP = 'printf "\a"'
 
+
 def beep_correct():
-    if os.name != 'nt':
+    if os.name != "nt":
         os.system(UNIX_BEEP)
 
+
 def beep_wrong():
-    if os.name != 'nt':
+    if os.name != "nt":
         os.system(UNIX_BEEP)
         os.system(UNIX_BEEP)
 
@@ -45,6 +47,7 @@ def clear_screen():
 # -----------------------------
 HIGHSCORE_FILE = "oz_highscore.txt"
 
+
 def load_highscore():
     if os.path.exists(HIGHSCORE_FILE):
         try:
@@ -53,6 +56,7 @@ def load_highscore():
         except ValueError:
             return 0
     return 0
+
 
 def save_highscore(score):
     with open(HIGHSCORE_FILE, "w") as f:
@@ -91,22 +95,30 @@ class Question:
         print(YELLOW + f"You have {self.time_limit} seconds ⏳" + RESET)
 
         # flag für den Countdown-Thread
-        thread_shared = {'answered': False}
+        thread_shared = {"answered": False}
 
         def countdown():
             for remaining in range(self.time_limit, 0, -1):
-                if thread_shared['answered']:
+                if thread_shared["answered"]:
                     break
-                
-                # Cursor zurück zum Anfang der Zeile bewegen, wenn es nicht die erste Anzeige ist
-                prefix = '\r' if remaining == self.time_limit else f'{MOVE_CURSOR_UP}\r'
 
-                print(f"{prefix}{CLEAR_CURRENT_LINE}Time remaining: {remaining} seconds\nYour answer (A/B/C): ", end="", flush=True)
+                # Cursor zurück zum Anfang der Zeile bewegen, wenn es nicht die erste Anzeige ist
+                prefix = "\r" if remaining == self.time_limit else f"{MOVE_CURSOR_UP}\r"
+
+                print(
+                    f"{prefix}{CLEAR_CURRENT_LINE}Time remaining: {remaining} seconds\nYour answer (A/B/C): ",
+                    end="",
+                    flush=True,
+                )
                 time.sleep(1)
-            if not thread_shared['answered']:
+            if not thread_shared["answered"]:
                 print(f"{CLEAR_CURRENT_LINE}{MOVE_CURSOR_UP}{CLEAR_CURRENT_LINE}")
 
-                print(RED + f"⏳ Too slow! You took {int(self.time_limit)} seconds." + RESET)
+                print(
+                    RED
+                    + f"⏳ Too slow! You took {int(self.time_limit)} seconds."
+                    + RESET
+                )
                 beep_wrong()
 
         # Countdown threaded starten
@@ -114,7 +126,7 @@ class Question:
         t.start()
 
         user_answer = input("").upper()
-        thread_shared['answered'] = True
+        thread_shared["answered"] = True
 
         if user_answer == self.answer:
             print(GREEN + "Correct! 🌟" + RESET)
@@ -197,25 +209,25 @@ level1 = [
     Question(
         "Who is the main girl in the story?",
         ["A: Dorothy 🌪️", "B: Alice 🐇", "C: Wendy 🧚"],
-        "A"
+        "A",
     ),
     Question(
         "What magical shoes does Dorothy wear?",
         ["A: Ruby slippers 👠", "B: Boots 🥾", "C: Sneakers 👟"],
-        "A"
-    )
+        "A",
+    ),
 ]
 
 level2 = [
     Question(
         "What is the name of Dorothy’s dog?",
         ["A: Scooby 🐕", "B: Toto 🐶", "C: Bella 🐩"],
-        "B"
+        "B",
     ),
     Question(
         "What color is the famous road leading to Oz?",
         ["A: Blue road 💙", "B: Red road ❤️", "C: Yellow road 💛"],
-        "C"
+        "C",
     ),
 ]
 
@@ -223,30 +235,37 @@ level3 = [
     Question(
         "What does the Scarecrow want from the Wizard?",
         ["A: A brain 🧠", "B: A heart ❤️", "C: Courage 🦁"],
-        "A"
+        "A",
     ),
     Question(
         "Which witch is defeated by water?",
-        ["A: Good Witch of the North ✨",
-         "B: Wicked Witch of the West 🧹",
-         "C: Wicked Witch of the East 🌪️"],
-        "B"
+        [
+            "A: Good Witch of the North ✨",
+            "B: Wicked Witch of the West 🧹",
+            "C: Wicked Witch of the East 🌪️",
+        ],
+        "B",
     ),
+]
+
+level4 = [
     Question(
         "What does the Tin Man want?",
         ["A: A new hat 🎩", "B: A heart ❤️", "C: A house 🏠"],
-        "B"
+        "B",
     ),
     Question(
         "Which friends travel with Dorothy?",
-        ["A: Scarecrow, Tin Man, Lion",
-         "B: Fairy, Dragon, Knight",
-         "C: Dwarf, Elf, Giant"],
-        "A"
-    )
+        [
+            "A: Scarecrow, Tin Man, Lion",
+            "B: Fairy, Dragon, Knight",
+            "C: Dwarf, Elf, Giant",
+        ],
+        "A",
+    ),
 ]
 
-all_levels = [level1, level2, level3]
+all_levels = [level1, level2, level3, level4]
 
 # -----------------------------
 # START GAME
@@ -254,4 +273,3 @@ all_levels = [level1, level2, level3]
 if __name__ == "__main__":
     quiz = Quiz(all_levels)
     quiz.start()
-
