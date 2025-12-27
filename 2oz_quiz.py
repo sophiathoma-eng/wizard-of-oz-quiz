@@ -2,6 +2,7 @@ import time
 import os
 import sys
 import threading
+from playsound3 import playsound
 
 # -----------------------------
 # ANSI ESCAPE CODES
@@ -25,14 +26,13 @@ UNIX_BEEP = 'printf "\a"'
 
 
 def beep_correct():
-    if os.name != "nt":
-        os.system(UNIX_BEEP)
+    t = threading.Thread(target=playsound, args=["Success.wav"], daemon=True)
+    t.start()
 
 
 def beep_wrong():
-    if os.name != "nt":
-        os.system(UNIX_BEEP)
-        os.system(UNIX_BEEP)
+    t = threading.Thread(target=playsound, args=["Wrong 1.wav"], daemon=True)
+    t.start()
 
 
 # -----------------------------
