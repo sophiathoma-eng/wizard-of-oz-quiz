@@ -113,7 +113,6 @@ class Question:
                     + f"⏳ Too slow! You took {int(self.time_limit)} seconds."
                     + RESET
                 )
-                beep_wrong()
 
         # Countdown threaded starten
         t = threading.Thread(target=countdown, daemon=True)
