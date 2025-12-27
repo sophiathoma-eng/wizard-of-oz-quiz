@@ -3,8 +3,6 @@ import os
 import sys
 import threading
 
-# TODO: beep macos
-
 # -----------------------------
 # ANSI ESCAPE CODES
 # -----------------------------
