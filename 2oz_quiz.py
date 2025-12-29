@@ -65,7 +65,7 @@ def title_screen():
     print(MAGENTA + "==============================")
     print("     WIZARD OF OZ QUIZ GAME 🌈")
     print("==============================" + RESET)
-    print(CYAN + "4 Levels • Timed Questions • Highscore" + RESET)
+    print(CYAN + "7 Levels • Timed Questions • Highscore" + RESET)
     print(YELLOW + f"Current Highscore: {load_highscore()} ⭐" + RESET)
     input(GREEN + "\nPress ENTER to begin..." + RESET)
 
@@ -110,7 +110,7 @@ class Question:
 
                 print(
                     RED
-                    + f"⏳ Too slow! You took {int(self.time_limit)} seconds."
+                    + f"⏳ Too slow! You took {int(self.time_limit)} seconds, press ENTER to continue."
                     + RESET
                 )
 
@@ -153,12 +153,28 @@ class Quiz:
 
     def story_intro(self):
         clear_screen()
-        print(CYAN + "You awaken in a dazzling land full of color and magic..." + RESET)
-        time.sleep(2)
+        print(CYAN + "You awaken in a dazzling land full of color and magic 🌈" + RESET)
+        time.sleep(1.5)
         print(CYAN + "Toto runs toward you barking excitedly 🐶" + RESET)
-        time.sleep(2)
-        print(CYAN + "He wants you to follow the Yellow Brick Road..." + RESET)
-        time.sleep(2)
+        time.sleep(1.5)
+        print(
+            CYAN
+            + "He wants you to follow the Yellow Brick Road to get to the Emerald City and the WIZARD OF OZ 🟨"
+            + RESET
+        )
+        time.sleep(1.5)
+        print(
+            CYAN
+            + "While following the Road you will find 3 new Friends along the way 🦅🦾🦁"
+            + RESET
+        )
+        time.sleep(1.5)
+        print(
+            CYAN
+            + "You have to help Toto and Dorothy to find‚ a way back Home 🏡 "
+            + RESET
+        )
+        time.sleep(1.5)
         print(YELLOW + "\nYour adventure in Oz begins now! 🌟" + RESET)
         input(GREEN + "Press ENTER to continue." + RESET)
 
@@ -186,12 +202,21 @@ class Quiz:
             print(CYAN + f"Highscore remains at: {high} ⭐" + RESET)
 
     def ask_replay(self):
-        answer = input(CYAN + "Play again? (yes/no): " + RESET).lower()
+        answer = input(GREEN + "Play again? (yes/no): " + RESET).lower()
         if answer == "yes":
             self.score = 0
             self.start()
         else:
-            print(GREEN + "Thanks for playing! Goodbye 👋" + RESET)
+            print(
+                MAGENTA
+                + "===== THANK YOU FOR HELPING ❣️ Toto and Dorothy are safe now 🏡 ====="
+            )
+
+            print(CYAN + "The Scarecrow never lost his Brain 🧠")
+
+            print(GREEN + "The Tin Man never needed another Heart ❤️")
+
+            print(YELLOW + "And the Lion always had courage 🦁" + RESET)
             sys.exit()
 
 
@@ -205,17 +230,17 @@ level1 = [
         "A",
     ),
     Question(
-        "What magical shoes does Dorothy wear?",
-        ["A: Ruby slippers 👠", "B: Boots 🥾", "C: Sneakers 👟"],
-        "A",
+        "What is the name of Dorothy’s dog?",
+        ["A: Scooby 🐕", "B: Toto 🐶", "C: Bella 🐩"],
+        "B",
     ),
 ]
 
 level2 = [
     Question(
-        "What is the name of Dorothy’s dog?",
-        ["A: Scooby 🐕", "B: Toto 🐶", "C: Bella 🐩"],
-        "B",
+        "What magical shoes does Dorothy wear?",
+        ["A: Ruby slippers 👠", "B: Boots 🥾", "C: Sneakers 👟"],
+        "A",
     ),
     Question(
         "What color is the famous road leading to Oz?",
@@ -226,16 +251,16 @@ level2 = [
 
 level3 = [
     Question(
-        "What does the Scarecrow want from the Wizard?",
-        ["A: A brain 🧠", "B: A heart ❤️", "C: Courage 🦁"],
+        "Which is the first new Friend Dorothy and Toto find on their way?",
+        ["A: A Scarecrow 🦅", "B: A Witch 🧙🏻‍♀️", "C: A Lion 🦁"],
         "A",
     ),
     Question(
-        "Which witch is defeated by water?",
+        "Why does the Friends follow Dorothy and Toto to the Emerald City?",
         [
-            "A: Good Witch of the North ✨",
-            "B: Wicked Witch of the West 🧹",
-            "C: Wicked Witch of the East 🌪️",
+            "A: They always wanted to see it ❇️",
+            "B: There is a saying that the Wizard of Oz can fulfil a wish 🍀",
+            "C: They want to go on a adventure 🌪️",
         ],
         "B",
     ),
@@ -243,22 +268,79 @@ level3 = [
 
 level4 = [
     Question(
-        "What does the Tin Man want?",
+        "The second Friend is a Tin Man, What does he want from the Wizard?",
         ["A: A new hat 🎩", "B: A heart ❤️", "C: A house 🏠"],
         "B",
     ),
     Question(
         "Which friends travel with Dorothy?",
         [
-            "A: Scarecrow, Tin Man, Lion",
-            "B: Fairy, Dragon, Knight",
-            "C: Dwarf, Elf, Giant",
+            "A: Scarecrow, Tin Man, Lion 🦅🦁🦾",
+            "B: Fairy, Dragon, Knight 🧚🏻🐲⚔️",
+            "C: Dwarf, Elf, Giant 👺🧚🏻‍♀️🦍",
+        ],
+        "A",
+    ),
+]
+level5 = [
+    Question(
+        "Where is Dorothy's home in the Real World",
+        ["A: Kansas City 🏞️", "B: Villingen-Schwenningen 🌄", "C: San Francisco🌉"],
+        "A",
+    ),
+    Question(
+        "Which witch is the good one?",
+        [
+            "A: Glinda 💖",
+            "B: Elfeba 🪬",
+            "C: Adriana 💐",
         ],
         "A",
     ),
 ]
 
-all_levels = [level1, level2, level3, level4]
+level6 = [
+    Question(
+        "What does the WIzard want Dorothy to do so he will fulfil her wish",
+        [
+            "A: He wants her to kill the wicked witch 🧙🏻‍♀️",
+            "B: He wants her leave Toto 🐶",
+            "C: He wants her to stay ",
+        ],
+        "A",
+    ),
+    Question(
+        "How is the wicked witch defended ",
+        [
+            "A: With warming words 💌",
+            "B: With taking away her Hat 🎩",
+            "C: With a bucket of Water 🌊",
+        ],
+        "C",
+    ),
+]
+
+level7 = [
+    Question(
+        "After killing the Wicked Witch, does the Wizard help bringing Dorothy and Toto back home? ",
+        [
+            "A: No, he steals the ballon and leaves Dorothy and Toto in the World of OZ 🎈",
+            "B: No he can't help them, because he is a liar 🤥",
+            "C: Yes, he just do his magic and Dorothy and Toto wake up in Kansas 🏡",
+        ],
+        "A",
+    ),
+    Question(
+        "How does Dorothy and Toto come Home in the End? ",
+        [
+            "A: With th Wizard of Oz 🧙🏼‍♂️",
+            "B: They cant go home, it was all just a dream 🛌",
+            "C: With the Ruby slipper, which Dorothy got at the beginning 👠",
+        ],
+        "C",
+    ),
+]
+all_levels = [level1, level2, level3, level4, level5, level6, level7]
 
 # -----------------------------
 # START GAME
